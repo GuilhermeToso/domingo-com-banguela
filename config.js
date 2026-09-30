@@ -13,9 +13,9 @@ const CONFIG = {
   HER_NAME: "Tayná",
 
   // --- headings (pt-BR) ---
-  inviteTitle: "Tayná, bora fazer alguma coisa comigo no domingo?",
+  inviteTitle: "Gostaria de fazer alguma coisa no domingo?",
   dateTitle: "Que horas e onde a gente se encontra?",
-  placePlaceholder: "Local de encontro (ex: Fonte dos Amores)",
+  placePlaceholder: "Local de encontro",
   foodTitle: "E o que você quer fazer domingo?",
   cardKicker: "É uma grande aventura! 🐉",
   signoffLine: "mal posso esperar 💙",
