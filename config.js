@@ -37,7 +37,6 @@ const CONFIG = {
   // --- what to do on Sunday (Poços de Caldas ideas) ---
   foodOptions: [
     { emoji: "🚡", label: "Teleférico + Cristo" },
-    { emoji: "🥾", label: "Trilha (Pedra Balão)" },
     { emoji: "🌳", label: "Passeio na praça" },
     { emoji: "⛩️", label: "Recanto Japonês" },
     { emoji: "💧", label: "Fonte dos Amores" },
@@ -52,10 +51,10 @@ const CONFIG = {
 
   // --- the special "I can cook for you" branch ---
   cookOption: {
-    emoji: "👨‍🍳",
-    label: "ou... eu posso cozinhar pra você",
-    prompt: "O que você quer que eu faça? 🍳",
-    placeholder: "ex: aquele macarrão especial",
+    emoji: "💭",
+    label: "ou... o que você preferir",
+    prompt: "O que você prefere fazer? ✨",
+    placeholder: "escreve aqui",
     fallbackDish: "uma surpresa"
   }
 };
