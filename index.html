@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0b1230">
+  <title>🐉</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <!-- ============ NIGHT SKY OVER BERK ============ -->
+  <div class="sky" aria-hidden="true">
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="stars" id="stars"></div>
+    <div class="moon"></div>
+    <svg class="mountains back" viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <path d="M0 300 L0 190 L80 150 L140 175 L210 110 L270 160 L340 130 L410 170 L480 100 L540 140 L620 120 L700 165 L770 105 L840 150 L910 120 L990 160 L1060 110 L1130 150 L1200 130 L1200 300Z"/>
+    </svg>
+    <svg class="mountains front" viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <path d="M0 300 L0 220 L60 185 L110 210 L170 140 L215 150 L240 205 L310 175 L370 215 L430 160 L470 115 L500 120 L530 180 L610 200 L690 150 L740 185 L800 130 L840 140 L870 190 L940 210 L1000 150 L1050 190 L1120 160 L1200 200 L1200 300Z"/>
+    </svg>
+  </div>
+
+  <canvas id="fireworks" class="fireworks" aria-hidden="true"></canvas>
+
+  <main id="app">
+
+    <!-- ============ STEP 1 — INVITATION ============ -->
+    <section class="step" id="step-invite" data-step="invite">
+      <div class="stage" data-dragon>
+
+        <!-- Toothless peeking from behind the card (moved between steps by app.js) -->
+        <div class="dragon" id="dragon" aria-hidden="true">
+          <svg class="tl-back" viewBox="0 0 240 220">
+            <defs>
+              <radialGradient id="tlSkin" gradientUnits="userSpaceOnUse" cx="120" cy="80" r="140">
+                <stop offset="0" stop-color="#3b4362"/>
+                <stop offset=".55" stop-color="#242a3d"/>
+                <stop offset="1" stop-color="#151926"/>
+              </radialGradient>
+              <radialGradient id="tlIris" cx="50%" cy="40%" r="65%">
+                <stop offset="0" stop-color="#e8f98f"/>
+                <stop offset=".6" stop-color="#a8d640"/>
+                <stop offset="1" stop-color="#5a8a1a"/>
+              </radialGradient>
+              <radialGradient id="tlPlasma" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset=".35" stop-color="#8fd8ff"/>
+                <stop offset="1" stop-color="#6b4dff" stop-opacity="0"/>
+              </radialGradient>
+              <clipPath id="tlEyeClip">
+                <ellipse cx="88" cy="122" rx="20" ry="22"/>
+                <ellipse cx="152" cy="122" rx="20" ry="22"/>
+              </clipPath>
+            </defs>
+
+            <!-- neck / shoulders (mostly hidden behind the card) -->
+            <path d="M56 220 C58 184 88 168 120 168 C152 168 182 184 184 220Z" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2"/>
+
+            <g id="tl-bob">
+              <g id="tl-head">
+                <!-- ear flaps -->
+                <g class="tl-ear" id="tl-ear-l">
+                  <path d="M86 84 C62 66 30 40 8 16 C40 26 70 44 96 70Z" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2"/>
+                  <path d="M60 106 C38 102 18 94 2 80 C26 78 48 84 66 94Z" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2"/>
+                </g>
+                <g class="tl-ear" id="tl-ear-r">
+                  <path d="M154 84 C178 66 210 40 232 16 C200 26 170 44 144 70Z" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2"/>
+                  <path d="M180 106 C202 102 222 94 238 80 C214 78 192 84 174 94Z" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2"/>
+                </g>
+
+                <!-- head -->
+                <path d="M40 132 C38 84 78 62 120 62 C162 62 202 84 200 132 C198 172 164 190 120 190 C76 190 42 172 40 132Z" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2.5"/>
+                <path d="M104 66 L96 46 L114 62Z" fill="#1c2030" stroke="#0e1019" stroke-width="1.5"/>
+                <path d="M136 66 L144 46 L126 62Z" fill="#1c2030" stroke="#0e1019" stroke-width="1.5"/>
+                <ellipse cx="120" cy="78" rx="34" ry="9" fill="#ffffff" opacity=".06"/>
+
+                <!-- blush -->
+                <g id="tl-blush" class="tl-blush">
+                  <ellipse cx="64" cy="152" rx="13" ry="7" fill="#ff7aa2" opacity=".6"/>
+                  <ellipse cx="176" cy="152" rx="13" ry="7" fill="#ff7aa2" opacity=".6"/>
+                </g>
+
+                <!-- open eyes -->
+                <g id="tl-eyes-open">
+                  <ellipse cx="88" cy="122" rx="20" ry="22" fill="url(#tlIris)" stroke="#0e1019" stroke-width="2.5"/>
+                  <ellipse cx="152" cy="122" rx="20" ry="22" fill="url(#tlIris)" stroke="#0e1019" stroke-width="2.5"/>
+                  <g clip-path="url(#tlEyeClip)">
+                    <g id="tl-pupils">
+                      <ellipse class="tl-pupil" cx="88" cy="122" rx="7" ry="15" fill="#0b0d12"/>
+                      <ellipse class="tl-pupil" cx="152" cy="122" rx="7" ry="15" fill="#0b0d12"/>
+                      <circle cx="82" cy="112" r="4" fill="#ffffff" opacity=".9"/>
+                      <circle cx="146" cy="112" r="4" fill="#ffffff" opacity=".9"/>
+                    </g>
+                  </g>
+                  <!-- eyelids + brow line (shape set by app.js per mood) -->
+                  <path id="tl-lid-l" fill="url(#tlSkin)"/>
+                  <path id="tl-lid-r" fill="url(#tlSkin)"/>
+                  <path id="tl-brow-l" fill="none" stroke="#0e1019" stroke-width="3" stroke-linecap="round"/>
+                  <path id="tl-brow-r" fill="none" stroke="#0e1019" stroke-width="3" stroke-linecap="round"/>
+                </g>
+
+                <!-- happy closed eyes ^ ^ -->
+                <g id="tl-eyes-happy" style="display:none" fill="none" stroke="#0b0d12" stroke-width="5" stroke-linecap="round">
+                  <path d="M70 128 Q88 104 106 128"/>
+                  <path d="M134 128 Q152 104 170 128"/>
+                </g>
+
+                <!-- tears -->
+                <g id="tl-tears" style="display:none">
+                  <path class="tear" d="M76 140 C72 148 70 152 76 156 C82 152 80 148 76 140Z" fill="#8fd3ff"/>
+                  <path class="tear t2" d="M164 140 C160 148 158 152 164 156 C170 152 168 148 164 140Z" fill="#8fd3ff"/>
+                </g>
+
+                <!-- nostrils -->
+                <ellipse cx="108" cy="146" rx="3.2" ry="2.2" fill="#0b0d12"/>
+                <ellipse cx="132" cy="146" rx="3.2" ry="2.2" fill="#0b0d12"/>
+
+                <!-- mouth (shape set by app.js per mood) -->
+                <path id="tl-mouth" stroke="#0b0d12" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path id="tl-gums" d="M82 153 Q120 149 158 153 Q156 162 150 162 Q120 158 90 162 Q84 162 82 153Z" fill="#f08aa3" style="display:none"/>
+                <path id="tl-tongue" d="M102 176 Q120 164 138 176 Q130 184 120 184 Q110 184 102 176Z" fill="#e8587a" style="display:none"/>
+                <ellipse id="tl-glow" cx="120" cy="167" rx="30" ry="14" fill="url(#tlPlasma)" style="display:none"/>
+                <path id="tl-teeth" fill="#f4f1e6" style="display:none"
+                      d="M92 157 l4 8 l4 -8Z M104 155 l4 8 l4 -8Z M116 154 l4 8 l4 -8Z M128 155 l4 8 l4 -8Z M140 157 l4 8 l4 -8Z M100 177 l4 -7 l4 7Z M114 178 l4 -7 l4 7Z M126 178 l4 -7 l4 7Z"/>
+              </g>
+            </g>
+          </svg>
+
+          <!-- paws: drawn IN FRONT of the card, gripping its top edge -->
+          <svg class="tl-front" viewBox="0 0 240 220">
+            <g id="tl-paw-l">
+              <path d="M40 198 C40 184 78 184 78 198 L78 210 C78 218 40 218 40 210Z" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2"/>
+              <path d="M52 204 v10 M66 204 v10" stroke="#0e1019" stroke-width="2" stroke-linecap="round"/>
+              <path d="M46 216 l-1 6 M59 217 l0 6 M72 216 l1 6" stroke="#c9cedb" stroke-width="3" stroke-linecap="round"/>
+            </g>
+            <g id="tl-paw-r">
+              <path d="M200 198 C200 184 162 184 162 198 L162 210 C162 218 200 218 200 210Z" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2"/>
+              <path d="M188 204 v10 M174 204 v10" stroke="#0e1019" stroke-width="2" stroke-linecap="round"/>
+              <path d="M194 216 l1 6 M181 217 l0 6 M168 216 l-1 6" stroke="#c9cedb" stroke-width="3" stroke-linecap="round"/>
+            </g>
+            <!-- paw holding his chin (in-love pose) -->
+            <g id="tl-chin-paw" style="display:none">
+              <!-- elbow resting on the card edge, forearm up to the chin -->
+              <path d="M172 206 C166 200 152 194 140 190" fill="none" stroke="#0e1019" stroke-width="26" stroke-linecap="round"/>
+              <path d="M172 206 C166 200 152 194 140 190" fill="none" stroke="url(#tlSkin)" stroke-width="21" stroke-linecap="round"/>
+              <ellipse cx="174" cy="205" rx="16" ry="11" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2"/>
+              <path d="M104 190 C104 176 150 176 150 190 C150 200 104 200 104 190Z" fill="url(#tlSkin)" stroke="#0e1019" stroke-width="2"/>
+              <path d="M104 187 C100 180 104 174 110 176 M118 180 C116 172 122 170 126 174 M134 180 C134 172 140 172 142 177" fill="none" stroke="#0e1019" stroke-width="2" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="card pop">
+          <h1 id="invite-title">Tayná, bora fazer alguma coisa comigo no domingo?</h1>
+          <div class="no-msg-zone">
+            <div class="no-msg" id="no-msg" aria-live="polite" hidden></div>
+          </div>
+          <div class="btns" id="invite-btns">
+            <button class="btn-sim" id="btn-sim" type="button">Sim 💙</button>
+            <button class="btn-nao" id="btn-nao" type="button">Não</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STEP 2 — DATE ============ -->
+    <section class="step" id="step-date" data-step="date" hidden>
+      <div class="stage" data-dragon>
+        <div class="card pop">
+          <span class="step-label">passo 1 de 2</span>
+          <h2 id="date-title">Que horas e onde a gente se encontra? 📍</h2>
+          <input type="time" id="time-input" class="date-input" aria-label="Escolha o horário">
+          <input type="text" id="place-input" class="time-input" maxlength="80" autocomplete="off" aria-label="Local de encontro">
+          <p class="hint" id="date-msg" aria-live="polite"></p>
+          <button class="btn-continue" id="date-continue" type="button" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STEP 3 — FOOD ============ -->
+    <section class="step" id="step-food" data-step="food" hidden>
+      <div class="stage" data-dragon>
+        <div class="card pop">
+          <span class="step-label">passo 2 de 2</span>
+          <h2 id="food-title">E o que você quer fazer domingo? ✨</h2>
+          <div class="chips" id="food-chips"></div>
+          <div class="dish-wrap" id="dish-wrap" hidden>
+            <label class="dish-prompt" id="dish-prompt" for="dish-input"></label>
+            <input type="text" id="dish-input" class="dish-input" maxlength="80" autocomplete="off">
+          </div>
+          <button class="btn-continue" id="food-continue" type="button" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STEP 4 — RESULT CARD ============ -->
+    <section class="step" id="step-card" data-step="card" hidden>
+      <div class="stage">
+        <div class="card result pop" id="result-card">
+          <div class="ornament">✦ ✦ ✦</div>
+          <div class="kicker" id="card-kicker"></div>
+          <div class="plan">
+            <span class="plan-chip" id="card-date"></span>
+            <span class="plan-chip" id="card-time"></span>
+            <span class="plan-chip" id="card-place"></span>
+            <span class="plan-chip" id="card-food"></span>
+          </div>
+          <div class="signoff" id="card-signoff"></div>
+        </div>
+        <div class="card-actions">
+          <div class="card-buttons">
+            <button class="btn-copy" id="btn-copy" type="button">Copiar</button>
+            <button class="btn-img" id="btn-img" type="button">Baixar imagem</button>
+          </div>
+          <span class="shot-hint">ou tira um print 📸 e me manda</span>
+        </div>
+      </div>
+      <div class="toast" id="toast" hidden></div>
+    </section>
+
+  </main>
+
+  <!-- ============ TOOTHLESS FLYING (final celebration) ============ -->
+  <div class="flyer" id="flyer" hidden aria-hidden="true">
+    <svg viewBox="0 0 300 180">
+      <!-- far wing -->
+      <g class="wing wing-back">
+        <path d="M150 94 C148 62 126 30 74 6 C92 26 90 36 96 48 C82 46 76 54 84 64 C72 64 68 74 80 82 C98 90 116 96 132 100Z" fill="#11141f" stroke="#0a0c14" stroke-width="2"/>
+      </g>
+      <!-- tail with the red prosthetic fin -->
+      <path d="M106 102 C76 110 46 104 16 92 L14 99 C44 113 76 121 108 116Z" fill="#1e2233" stroke="#0a0c14" stroke-width="2"/>
+      <path d="M18 93 L0 78 L6 97Z" fill="#1e2233" stroke="#0a0c14" stroke-width="1.5"/>
+      <path d="M16 98 L-2 112 L22 106Z" fill="#c8302f" stroke="#5a0f0f" stroke-width="1.5"/>
+      <!-- legs -->
+      <path d="M122 118 C118 132 110 138 100 141" fill="none" stroke="#1e2233" stroke-width="10" stroke-linecap="round"/>
+      <path d="M172 120 C176 132 182 138 190 140" fill="none" stroke="#1e2233" stroke-width="10" stroke-linecap="round"/>
+      <!-- body -->
+      <ellipse cx="150" cy="108" rx="54" ry="21" fill="#242a3d" stroke="#0a0c14" stroke-width="2"/>
+      <!-- neck + head -->
+      <path d="M186 98 C198 90 206 86 214 86 L222 110 C208 114 198 118 190 120Z" fill="#242a3d"/>
+      <path d="M214 80 C204 66 190 58 174 52 C186 66 196 76 206 88Z" fill="#1e2233" stroke="#0a0c14" stroke-width="1.5"/>
+      <path d="M210 88 C198 82 186 82 176 84 C188 90 198 94 208 96Z" fill="#1e2233" stroke="#0a0c14" stroke-width="1.5"/>
+      <ellipse cx="228" cy="96" rx="30" ry="21" fill="#2a3047" stroke="#0a0c14" stroke-width="2"/>
+      <ellipse cx="238" cy="89" rx="8" ry="9" fill="#a8d640" stroke="#0a0c14" stroke-width="1.5"/>
+      <ellipse cx="240" cy="89" rx="4" ry="7" fill="#0b0d12"/>
+      <circle cx="236" cy="85" r="2" fill="#fff"/>
+      <path d="M228 102 Q244 118 257 99 Q244 106 228 102Z" fill="#f08aa3" stroke="#0a0c14" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="252" cy="93" r="1.6" fill="#0b0d12"/>
+      <!-- near wing -->
+      <g class="wing wing-front">
+        <path d="M160 94 C160 58 146 22 102 0 C118 22 116 32 120 44 C106 42 100 50 108 60 C96 60 92 70 104 78 C120 88 136 94 150 100Z" fill="#2a3047" stroke="#0a0c14" stroke-width="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <script src="./vendor/html2canvas.min.js"></script>
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
